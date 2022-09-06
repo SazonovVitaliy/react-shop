@@ -27,6 +27,8 @@ const DeviceCard: FC<IDeviceCard> = ({ device }) => {
   const [isBuy, setIsBuy] = useState(false);
   const dispatch = useAppDispatch();
 
+  //!!const host = "http://localhost:3001/devices?image=";
+
   const addToFav = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsFav(true);
@@ -51,6 +53,8 @@ const DeviceCard: FC<IDeviceCard> = ({ device }) => {
     dispatch(deleteFromBasket(device));
     setIsBuy(false);
   };
+  console.log(device.image);
+
   return (
     <Box sx={{ p: "10px", minWidth: "230px", position: "relative" }}>
       <Card

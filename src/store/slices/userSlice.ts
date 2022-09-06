@@ -3,8 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 const LS_SET_USER = "lsu";
 const LOGIN = "logu";
 const EMAIL = "uemail";
-const initialState = {
-  email: JSON.parse(localStorage.getItem(EMAIL) ?? ""),
+
+interface IUser {
+  email: string;
+  token: string | null;
+  id: string | null;
+  isAuth: boolean;
+}
+
+const initialState: IUser = {
+  email: JSON.parse(localStorage.getItem(EMAIL) ?? "[]"),
   token: null,
   id: null,
   isAuth: JSON.parse(localStorage.getItem(LOGIN) ?? "false"),
@@ -24,7 +32,7 @@ export const userSlice = createSlice({
       localStorage.setItem(LS_SET_USER, JSON.stringify(state));
     },
     removeUser(state) {
-      state.email = null;
+      state.email = "";
       state.id = null;
       state.token = null;
       state.isAuth = false;

@@ -26,7 +26,6 @@ export const devicesAPI = createApi({
     }),
   }),
 });
-
 export const {
   useFetchAllDevicesQuery,
   useFetchByBrandDevicesQuery,
