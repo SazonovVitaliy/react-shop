@@ -84,7 +84,7 @@ const Favourites = () => {
                   <Link
                     className="fav__card-title"
                     to={PRODUCT_ROUTE + f.id}
-                    state={{ f }}
+                    state={f}
                   >
                     <CardHeader className="fav__card-header" title={f.model} />
                   </Link>

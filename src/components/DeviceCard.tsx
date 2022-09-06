@@ -53,7 +53,6 @@ const DeviceCard: FC<IDeviceCard> = ({ device }) => {
     dispatch(deleteFromBasket(device));
     setIsBuy(false);
   };
-  console.log(device.image);
 
   return (
     <Box sx={{ p: "10px", minWidth: "230px", position: "relative" }}>

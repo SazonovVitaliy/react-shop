@@ -1,4 +1,4 @@
-import { Button, Tooltip} from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 import React, { FC, useState } from "react";
 import { IDevice } from "../types";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -14,6 +14,7 @@ const ProductCard: FC<IProduct> = ({ device }) => {
   const dispatch = useDispatch();
   const { addToBasket, deleteFromBasket } = basketActions;
   const { addFovourite, removeFavourite } = favouriteActions;
+  console.log(device);
 
   const [isFav, setIsFav] = useState(false);
   const [isBuy, setIsBuy] = useState(false);

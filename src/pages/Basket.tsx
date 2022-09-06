@@ -64,7 +64,7 @@ const Basket = () => {
                     <Link
                       className="fav__card-title"
                       to={PRODUCT_ROUTE + device.id}
-                      state={{ device }}
+                      state={ device }
                     >
                       <CardHeader
                         className="fav__card-header"
