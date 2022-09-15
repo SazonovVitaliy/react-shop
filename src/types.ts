@@ -1,6 +1,7 @@
 export interface IType {
   id: number;
   type: string;
+  url: string;
 }
 
 export interface IBrand {
@@ -15,6 +16,7 @@ export interface IDevice {
   image: string;
   price: number;
   description: string;
+  rating?: number;
 }
 
 export interface IUser {
@@ -22,4 +24,9 @@ export interface IUser {
   id: string;
   token: string;
   isAuth: any;
+}
+
+export interface IFilter {
+  type: string;
+  query: string;
 }

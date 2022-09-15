@@ -1,5 +1,3 @@
-import { AppBar, Container, Toolbar} from "@mui/material";
-
 import ButtonGroup from "./ButtonGroup";
 import { Link } from "react-router-dom";
 import { SHOP_ROUTE } from "../../utils/const";
@@ -10,39 +8,21 @@ const Header = () => {
   const { email, isAuth } = useAuth();
 
   return (
-    <header>
-      <AppBar color="inherit">
-        <div
-          style={{
-            backgroundColor: "darkorange",
-            height: "33px",
-            color: "white",
-            position: "relative",
-          }}
-        >
+    <header className="header">
+      <div className="header__top">
+        <div className="header__container">
           {isAuth && (
-            <div
-              style={{
-                right: "20px",
-                position: "absolute",
-                display: "flex",
-                marginTop: "5px",
-              }}
-            >
+            <div className="header__greetings">
               Здравствуйте,{" "}
               <AccountCircleOutlinedIcon sx={{ m: "0 3px 0 8px" }} />{" "}
               <div>{email}</div>
             </div>
           )}
         </div>
-        <Container>
-          <Toolbar
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              py: "10px",
-            }}
-          >
+      </div>
+      <div className="header__bottom">
+        <div className="container">
+          <div className="header__bottom-content">
             <Link
               to={SHOP_ROUTE}
               style={{
@@ -56,9 +36,9 @@ const Header = () => {
               SHOP
             </Link>
             <ButtonGroup />
-          </Toolbar>
-        </Container>
-      </AppBar>
+          </div>
+        </div>
+      </div>
     </header>
   );
 };

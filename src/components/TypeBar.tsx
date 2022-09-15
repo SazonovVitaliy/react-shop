@@ -1,40 +1,30 @@
-import { Box, List, ListItem } from "@mui/material";
+import { List, ListItem } from "@mui/material";
 import React, { FC } from "react";
-import { IType } from "../types";
+import { IFilter, IType } from "../types";
 
 interface ITypeBarProps {
   types: IType[];
-  setTypeFilter: (type: string) => void;
+  setFilter: (filter: IFilter) => void;
+  filter: IFilter;
 }
-const TypeBar: FC<ITypeBarProps> = ({ types, setTypeFilter }) => {
+const TypeBar: FC<ITypeBarProps> = ({ types, setFilter, filter }) => {
   return (
-    <Box
-      sx={{
-        width: "100%",
-        maxWidth: "150px",
-        bgcolor: "white",
-        borderRadius: 3,
-        mt: "50px",
-        //display: "inline-block",
-        height: "fit-content",
-        mx: "24px",
-        cursor: "pointer",
-      }}
-    >
-      <nav aria-label="main mailbox folders">
-        <List>
+    <aside className="typebar">
+      <nav className="typebar__nav" aria-label="main mailbox folders">
+        <List className="typebar__list">
           {types.map((type) => (
             <ListItem
-              onClick={() => setTypeFilter(type.type)}
+              onClick={() => setFilter({ ...filter, type: type.type })}
               className="menu__list-item"
               key={type.id}
             >
+              <img src={type.url} alt="icon" style={{ paddingRight: "10px" }} />{" "}
               {type.type}
             </ListItem>
           ))}
         </List>
       </nav>
-    </Box>
+    </aside>
   );
 };
 

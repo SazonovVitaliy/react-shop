@@ -1,4 +1,11 @@
-import { Button, Card, CardHeader, CardMedia, Tooltip } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardMedia,
+  Rating,
+  Tooltip,
+} from "@mui/material";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../hooks/redux";
@@ -33,10 +40,12 @@ const Favourites = () => {
   return (
     <>
       <div className="fav">
-        <h1>Избранное</h1>
+        <h1 className="title">Избранное</h1>
         {!favourites.length ? (
           <div>
-            <h2>В списке пока нет ни одного избранного товара</h2>
+            <h2 className="subtitle">
+              В списке пока нет ни одного избранного товара
+            </h2>
             <Link className="card__title" to={SHOP_ROUTE}>
               Перейти на главную страницу
             </Link>
@@ -44,7 +53,14 @@ const Favourites = () => {
         ) : (
           <>
             <div>
-              <Card sx={{ px: "10px", minHeight: "30px", my: "20px" }}>
+              <Card
+                sx={{
+                  px: "10px",
+                  minHeight: "30px",
+                  my: "20px",
+                  borderRadius: "8px",
+                }}
+              >
                 {favourites.length > 1 ? (
                   <h4>
                     {favourites.length} товарa на сумму: {calculatePrice} $
@@ -60,13 +76,13 @@ const Favourites = () => {
               <Card
                 key={f.id}
                 sx={{
-                  //px: "10px",
-                  minHeight: "250px",
-                  minWidth: "300px",
-                  my: "10px",
+                  minHeight: "auto",
+                  p: "15px",
+                  my: "15px",
                   display: "flex",
                   flexWrap: "wrap",
                   justifyContent: "space-between",
+                  borderRadius: "8px",
                 }}
               >
                 <div className="fav__card">
@@ -75,10 +91,10 @@ const Favourites = () => {
                     image={f.image}
                     alt={f.model}
                     sx={{
+                      padding: "15px",
                       display: "flex",
                       maxHeight: "150px",
                       width: "auto",
-                      objectFit: "cover",
                     }}
                   />
                   <Link
@@ -89,33 +105,44 @@ const Favourites = () => {
                     <CardHeader className="fav__card-header" title={f.model} />
                   </Link>
                 </div>
-                <div className="favourites__buttons">
-                  <Tooltip title="Убрать из избранного">
-                    <DeleteOutlinedIcon
-                      className="card__button-fav"
-                      onClick={() => handleFavDelete(f)}
+                <div>
+                  <div className="card__block">
+                    <Rating
+                      className="card__raiting"
+                      defaultValue={f.rating}
+                      precision={0.5}
+                      readOnly
                     />
-                  </Tooltip>
-                  {!isBuy && (
-                    <Tooltip title="Добавить в корзину">
-                      <Button
-                        onClick={() => addBasket(f)}
-                        className="card__button"
-                      >
-                        <ShoppingCartOutlinedIcon className="card__button-buy" />
-                      </Button>
+                    <div className="card__price">{f.price} $</div>
+                  </div>
+                  <div className="favourites__buttons">
+                    <Tooltip title="Убрать из избранного">
+                      <DeleteOutlinedIcon
+                        className="card__button-fav"
+                        onClick={() => handleFavDelete(f)}
+                      />
                     </Tooltip>
-                  )}
-                  {isBuy && (
-                    <Tooltip title="Убрать из корзины">
-                      <Button
-                        onClick={() => removeFromBasket(f)}
-                        className="card__button"
-                      >
-                        <ShoppingCartOutlinedIcon className="card__button-active" />
-                      </Button>
-                    </Tooltip>
-                  )}
+                    {!isBuy && (
+                      <Tooltip title="Добавить в корзину">
+                        <Button
+                          onClick={() => addBasket(f)}
+                          className="card__button"
+                        >
+                          <ShoppingCartOutlinedIcon className="card__button-buy" />
+                        </Button>
+                      </Tooltip>
+                    )}
+                    {isBuy && (
+                      <Tooltip title="Убрать из корзины">
+                        <Button
+                          onClick={() => removeFromBasket(f)}
+                          className="card__button"
+                        >
+                          <ShoppingCartOutlinedIcon className="card__button-active" />
+                        </Button>
+                      </Tooltip>
+                    )}
+                  </div>
                 </div>
               </Card>
             ))}

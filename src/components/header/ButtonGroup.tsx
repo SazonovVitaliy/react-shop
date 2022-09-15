@@ -24,30 +24,30 @@ const ButtonGroup = () => {
     <div style={{ display: "flex" }}>
       <Link className="link" to={FAVORITES_ROUTE}>
         <FavoriteBorderOutlinedIcon />
-        <Typography>Избранное</Typography>
+        <Typography className="typography">Избранное</Typography>
       </Link>
       <Link className="link" to={BASKET_ROUTE}>
         <ShoppingCartOutlinedIcon />
-        <Typography>Корзина</Typography>
+        <Typography className="typography">Корзина</Typography>
       </Link>
       <Link className="link" to={SHOP_ROUTE} onClick={handleLogOut}>
         <AccountCircleOutlinedIcon />
-        <Typography>Выход</Typography>
+        <Typography className="typography">Выход</Typography>
       </Link>
     </div>
   ) : (
     <div style={{ display: "flex" }}>
       <Link className="link" to={FAVORITES_ROUTE}>
         <FavoriteBorderOutlinedIcon />
-        <Typography>Избранное</Typography>
+        <Typography className="typography">Избранное</Typography>
       </Link>
       <Link className="link" to={LOGIN_ROUTE}>
         <ShoppingCartOutlinedIcon />
-        <Typography>Корзина</Typography>
+        <Typography className="typography">Корзина</Typography>
       </Link>
       <Link className="link" to={LOGIN_ROUTE}>
         <AccountCircleOutlinedIcon />
-        <Typography>Вход</Typography>
+        <Typography className="typography">Вход</Typography>
       </Link>
     </div>
   );

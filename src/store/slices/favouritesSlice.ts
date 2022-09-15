@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IDevice } from "../../types";
 
-const LS_FAV_DEV = "lfd";
+export const LS_FAV_DEV = "lfd";
 interface favouritesState {
   favourites: IDevice[];
 }
@@ -17,7 +17,7 @@ export const favouritesSlice = createSlice({
     addFovourite(state, action: PayloadAction<IDevice>) {
       state.favourites.push(action.payload);
       localStorage.setItem(LS_FAV_DEV, JSON.stringify(state.favourites));
-      console.log(1);
+      console.log(state.favourites);
     },
     removeFavourite(state, action: PayloadAction<IDevice>) {
       state.favourites = state.favourites.filter(

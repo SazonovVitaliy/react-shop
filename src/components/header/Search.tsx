@@ -1,22 +1,24 @@
 import { SearchOutlined } from "@mui/icons-material";
 import { IconButton, TextField } from "@mui/material";
 import React, { FC } from "react";
+import { IFilter } from "../../types";
 
-interface ISearch {
-  setQuery: (query: string) => void;
+interface ISearchProps {
+  setFilter: (filter: IFilter) => void;
+  filter: IFilter;
 }
-const Search: FC<ISearch> = ({ setQuery }) => {
+const Search: FC<ISearchProps> = ({ setFilter, filter }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
+    setFilter({ ...filter, query: e.target.value });
   };
   return (
     <div className="search">
       <TextField
+        value={filter.query}
         onChange={handleChange}
         type="search"
         label="Поиск по сайту"
-				className="search__field"
-        
+        className="search__field"
         InputProps={{
           endAdornment: (
             <IconButton>

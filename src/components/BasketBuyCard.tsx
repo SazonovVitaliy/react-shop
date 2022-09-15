@@ -20,7 +20,7 @@ const BasketBuyCard: FC<BuyCardProps> = ({ basket }) => {
       <h3 className="buycard__title">Условия заказа</h3>
       <hr />
       <div className="buycard__content">
-        <h5>Итого:</h5>
+        <h5 className="subtitle">Итого:</h5>
         <h4>
           {basket.length > 1 ? (
             <>
