@@ -15,13 +15,11 @@ import { PRODUCT_ROUTE, SHOP_ROUTE } from "../utils/const";
 import { useDispatch } from "react-redux";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { IDevice } from "./../types";
-import { useState } from "react";
 
 const Favourites = () => {
   const { favourites } = useAppSelector((state) => state.favourites);
   const { removeFavourite } = favouriteActions;
-  const { addToBasket, deleteFromBasket } = basketActions;
-  const [isBuy, setIsBuy] = useState(false);
+  const { addToBasket } = basketActions;
   const dispatch = useDispatch();
 
   const calculatePrice = favourites.reduce((acc, curr) => acc + curr.price, 0);
@@ -31,12 +29,8 @@ const Favourites = () => {
   };
   const addBasket = (f: IDevice) => {
     dispatch(addToBasket(f));
-    setIsBuy(true);
   };
-  const removeFromBasket = (f: IDevice) => {
-    dispatch(deleteFromBasket(f));
-    setIsBuy(false);
-  };
+
   return (
     <>
       <div className="fav">
@@ -122,26 +116,14 @@ const Favourites = () => {
                         onClick={() => handleFavDelete(f)}
                       />
                     </Tooltip>
-                    {!isBuy && (
-                      <Tooltip title="Добавить в корзину">
-                        <Button
-                          onClick={() => addBasket(f)}
-                          className="card__button"
-                        >
-                          <ShoppingCartOutlinedIcon className="card__button-buy" />
-                        </Button>
-                      </Tooltip>
-                    )}
-                    {isBuy && (
-                      <Tooltip title="Убрать из корзины">
-                        <Button
-                          onClick={() => removeFromBasket(f)}
-                          className="card__button"
-                        >
-                          <ShoppingCartOutlinedIcon className="card__button-active" />
-                        </Button>
-                      </Tooltip>
-                    )}
+                    <Tooltip title="Добавить в корзину">
+                      <Button
+                        onClick={() => addBasket(f)}
+                        className="card__button"
+                      >
+                        <ShoppingCartOutlinedIcon className="card__button-buy" />
+                      </Button>
+                    </Tooltip>
                   </div>
                 </div>
               </Card>

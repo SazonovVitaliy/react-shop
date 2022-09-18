@@ -12,7 +12,6 @@ const BasketBuyCard: FC<BuyCardProps> = ({ basket }) => {
   const handleModal = () => {
     setVisible(true);
   };
-  console.log(visible);
 
   const calculatePrice = basket.reduce((acc, curr) => acc + curr.price, 0);
   return (

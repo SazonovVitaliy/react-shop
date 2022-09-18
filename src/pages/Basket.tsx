@@ -7,17 +7,16 @@ import { IDevice } from "./../types";
 import { basketActions } from "./../store/slices/basketSlice";
 import { useDispatch } from "react-redux";
 import BasketBuyCard from "../components/BasketBuyCard";
+import { FC } from "react";
 
-const Basket = () => {
+const Basket: FC = () => {
   const { basket } = useAppSelector((state) => state.basket);
   const dispatch = useDispatch();
   const { deleteFromBasket } = basketActions;
-
-  console.log(basket);
-
   const handleBasketDelete = (device: IDevice) => {
     dispatch(deleteFromBasket(device));
   };
+
   return (
     <>
       <div className="basket">

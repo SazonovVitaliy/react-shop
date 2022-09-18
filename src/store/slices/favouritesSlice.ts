@@ -17,7 +17,6 @@ export const favouritesSlice = createSlice({
     addFovourite(state, action: PayloadAction<IDevice>) {
       state.favourites.push(action.payload);
       localStorage.setItem(LS_FAV_DEV, JSON.stringify(state.favourites));
-      console.log(state.favourites);
     },
     removeFavourite(state, action: PayloadAction<IDevice>) {
       state.favourites = state.favourites.filter(

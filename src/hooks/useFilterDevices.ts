@@ -8,7 +8,6 @@ export const useFilterDevicesByType = (devices: IDevice[], filter: IFilter) => {
     }
     return devices;
   }, [devices, filter.type]);
-  console.log(sortedDevices);
   return sortedDevices;
 };
 

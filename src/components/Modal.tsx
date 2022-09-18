@@ -13,7 +13,6 @@ const Modal: FC<IModalProps> = ({ visible, setVisible }) => {
   const handleCloseModal = () => {
     setVisible(false);
   };
-  console.log(name);
   const handleConfirm = (e: any) => {
     alert(`${name} мы Вам перезвоним`);
     setVisible(false);

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IDevice } from "../../types";
 import { PayloadAction } from "@reduxjs/toolkit";
 
-const LS_BD = "lbd";
+export const LS_BD = "lbd";
 
 interface basketState {
   basket: IDevice[];

@@ -1,10 +1,13 @@
 import { Button, Tooltip } from "@mui/material";
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { IDevice } from "../types";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { useDispatch } from "react-redux";
 import { basketActions } from "../store/slices/basketSlice";
-import { favouriteActions } from "./../store/slices/favouritesSlice";
+import {
+  favouriteActions,
+  LS_FAV_DEV,
+} from "./../store/slices/favouritesSlice";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 interface IProduct {
@@ -12,15 +15,20 @@ interface IProduct {
 }
 const ProductCard: FC<IProduct> = ({ device }) => {
   const dispatch = useDispatch();
-  const { addToBasket, deleteFromBasket } = basketActions;
+  const { addToBasket } = basketActions;
   const { addFovourite, removeFavourite } = favouriteActions;
-  console.log(device);
-
   const [isFav, setIsFav] = useState(false);
-  const [isBuy, setIsBuy] = useState(false);
+
+  useEffect(() => {
+    const devices = JSON.parse(localStorage.getItem(LS_FAV_DEV) || "");
+    for (let dev of devices) {
+      if (dev.id === device.id) {
+        setIsFav(true);
+      }
+    }
+  }, []);
   const addBasket = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setIsBuy(true);
     dispatch(addToBasket(device));
   };
   const addToFav = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -33,11 +41,7 @@ const ProductCard: FC<IProduct> = ({ device }) => {
     dispatch(removeFavourite(device));
     setIsFav(false);
   };
-  const removeFromBasket = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    dispatch(deleteFromBasket(device));
-    setIsBuy(false);
-  };
+
   return (
     <div className="product__card">
       <h2>{device.model}</h2>
@@ -62,20 +66,11 @@ const ProductCard: FC<IProduct> = ({ device }) => {
               </Button>
             </Tooltip>
           )}
-          {!isBuy && (
-            <Tooltip title="Добавить в корзину">
-              <Button onClick={addBasket} className="card__button">
-                <ShoppingCartOutlinedIcon className="card__button-buy" />
-              </Button>
-            </Tooltip>
-          )}
-          {isBuy && (
-            <Tooltip title="Убрать из корзины">
-              <Button onClick={removeFromBasket} className="card__button">
-                <ShoppingCartOutlinedIcon className="card__button-active" />
-              </Button>
-            </Tooltip>
-          )}
+          <Tooltip title="Добавить в корзину">
+            <Button onClick={addBasket} className="card__button">
+              <ShoppingCartOutlinedIcon className="card__button-buy" />
+            </Button>
+          </Tooltip>
         </div>
       </div>
     </div>
