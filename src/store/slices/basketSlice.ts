@@ -23,6 +23,10 @@ export const basketSlice = createSlice({
       state.basket = state.basket.filter((bas) => bas.id !== action.payload.id);
       localStorage.setItem(LS_BD, JSON.stringify(state.basket));
     },
+    clearBasket(state) {
+      state.basket.length = 0;
+      localStorage.setItem(LS_BD, JSON.stringify([]));
+    },
   },
 });
 

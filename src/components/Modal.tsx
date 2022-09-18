@@ -1,9 +1,14 @@
 import React, { FC, useState } from "react";
+import { useDispatch } from "react-redux";
+import { basketActions } from "../store/slices/basketSlice";
 interface IModalProps {
   visible: boolean;
   setVisible: (visible: boolean) => void;
 }
 const Modal: FC<IModalProps> = ({ visible, setVisible }) => {
+  const { clearBasket } = basketActions;
+  const dispatch = useDispatch();
+
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
   const rootClasses = ["modal"];
@@ -18,6 +23,7 @@ const Modal: FC<IModalProps> = ({ visible, setVisible }) => {
     setVisible(false);
     setName("");
     setTel("");
+    dispatch(clearBasket());
   };
   return (
     <div className={rootClasses.join(" ")} onClick={handleCloseModal}>
