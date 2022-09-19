@@ -243,7 +243,7 @@ code {
 }
 
 .card__block {
-  padding: 15px 0 0 0;
+  padding: 15px;
   font-size: 1.5rem;
   font-weight: bold;
   color: #000;
@@ -389,14 +389,14 @@ code {
 .counter__wrapper {
   display: flex;
   align-items: center;
-  min-width: 80px;
+  min-width: 90px;
   padding: 0 15px;
 }
 .counter__content {
   border: 1px lightgray solid;
   border-radius: 8px;
   padding: 7px 12px;
-  min-width: 85px;
+  min-width: 90px;
   max-height: 25px;
 }
 .counter__btn {
