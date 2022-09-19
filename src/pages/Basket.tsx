@@ -17,7 +17,6 @@ const Basket: FC = () => {
   const handleBasketDelete = (device: IDevice) => {
     dispatch(deleteFromBasket(device));
   };
-  console.log(basket);
 
   return (
     <>
@@ -77,7 +76,9 @@ const Basket: FC = () => {
                         precision={0.5}
                         readOnly
                       />
-                      <div className="card__price">{device.price} $</div>
+                      <div className="card__price">
+                        {device.price * device.count} $
+                      </div>
                     </div>
                     <Tooltip title="Удалить из корзины">
                       <DeleteOutlinedIcon
