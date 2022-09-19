@@ -20,7 +20,7 @@ export const favouritesSlice = createSlice({
     },
     removeFavourite(state, action: PayloadAction<IDevice>) {
       state.favourites = state.favourites.filter(
-        (fav) => fav.id !== action.payload.id
+        (device) => device.id !== action.payload.id
       );
       localStorage.setItem(LS_FAV_DEV, JSON.stringify(state.favourites));
     },

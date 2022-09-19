@@ -13,7 +13,13 @@ const BasketBuyCard: FC<BuyCardProps> = ({ basket }) => {
     setVisible(true);
   };
 
-  const calculatePrice = basket.reduce((acc, curr) => acc + curr.price, 0);
+  const goods = basket.reduce((acc, curr) => acc + curr.count, 0);
+  console.log(goods);
+
+  const calculatePrice = basket.reduce(
+    (acc, curr) => acc + curr.price * curr.count,
+    0
+  );
   return (
     <Card className="buycard">
       <h3 className="buycard__title">Условия заказа</h3>
@@ -21,13 +27,13 @@ const BasketBuyCard: FC<BuyCardProps> = ({ basket }) => {
       <div className="buycard__content">
         <h5 className="subtitle">Итого:</h5>
         <h4>
-          {basket.length > 1 ? (
+          {goods > 1 ? (
             <>
-              {basket.length} товара на сумму: {calculatePrice} $
+              {goods} товара на сумму: {calculatePrice} $
             </>
           ) : (
             <>
-              {basket.length} товар на сумму: {calculatePrice} $
+              {goods} товар на сумму: {calculatePrice} $
             </>
           )}
         </h4>

@@ -8,6 +8,7 @@ import { basketActions } from "./../store/slices/basketSlice";
 import { useDispatch } from "react-redux";
 import BasketBuyCard from "../components/BasketBuyCard";
 import { FC } from "react";
+import Counter from "../components/Counter";
 
 const Basket: FC = () => {
   const { basket } = useAppSelector((state) => state.basket);
@@ -16,6 +17,7 @@ const Basket: FC = () => {
   const handleBasketDelete = (device: IDevice) => {
     dispatch(deleteFromBasket(device));
   };
+  console.log(basket);
 
   return (
     <>
@@ -66,6 +68,7 @@ const Basket: FC = () => {
                       />
                     </Link>
                   </div>
+                  <Counter device={device} />
                   <div className="favourites__buttons">
                     <div className="card__block">
                       <Rating

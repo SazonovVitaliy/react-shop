@@ -16,11 +16,31 @@ export const basketSlice = createSlice({
   initialState,
   reducers: {
     addToBasket(state, action: PayloadAction<IDevice>) {
-      state.basket.push(action.payload);
-      localStorage.setItem(LS_BD, JSON.stringify(state.basket));
+      const device = state.basket?.find(
+        (device) => device.id === action.payload.id
+      );
+      if (device) {
+        device.count++;
+        localStorage.setItem(LS_BD, JSON.stringify(state.basket));
+      } else {
+        state.basket.push(action.payload);
+        localStorage.setItem(LS_BD, JSON.stringify(state.basket));
+      }
+      console.log(device?.count);
+    },
+    removeDevice(state, action: PayloadAction<IDevice>) {
+      const device = state.basket?.find(
+        (device) => device.id === action.payload.id
+      );
+      if (device) {
+        device.count -= 1;
+        localStorage.setItem(LS_BD, JSON.stringify(state.basket));
+      }
     },
     deleteFromBasket(state, action: PayloadAction<IDevice>) {
-      state.basket = state.basket.filter((bas) => bas.id !== action.payload.id);
+      state.basket = state.basket.filter(
+        (device) => device.id !== action.payload.id
+      );
       localStorage.setItem(LS_BD, JSON.stringify(state.basket));
     },
     clearBasket(state) {

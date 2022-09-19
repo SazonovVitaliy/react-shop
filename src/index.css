@@ -376,7 +376,35 @@ code {
   align-items: center;
   padding: 10px 0 10px 15px;
 }
-
+.counter__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 80px;
+  padding: 0 15px;
+}
+.counter__content {
+  border: 1px lightgray solid;
+  border-radius: 8px;
+  padding: 7px 12px;
+  min-width: 85px;
+  max-height: 25px;
+}
+.counter__btn {
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 3px;
+}
+.counter__btn:hover {
+  background-color: lightgray;
+}
+.counter__btn:not(:last-child) {
+  margin-right: 10px;
+}
+.counter__btn:not(:first-child) {
+  margin-left: 10px;
+}
 .buycard {
   height: fit-content;
   margin-top: 20px;

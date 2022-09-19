@@ -17,6 +17,7 @@ export interface IDevice {
   price: number;
   description: string;
   rating?: number;
+  count: number;
 }
 
 export interface IUser {
